@@ -1,0 +1,35 @@
+CREATE TABLE market_value(
+code                    VARCHAR(10)         not null,
+cost                    INT                 not null,
+open_cost               INT                 not null,
+close_cost              INT                 not null,
+min_cost                INT                 not null,
+max_cost                INT                 not null,
+buy_cost                INT                 not null,
+sell_cost               INT                 not null,
+trading_volume          INT                 not null
+
+
+create_at       TIMESTAMP not null default now(),
+update_at       TIMESTAMP not null default now(),
+delete_at       TIMESTAMP default null,
+is_deleted      BOOLEAN   not null default false,
+
+constraint ПРОПИСАТЬ КЛЮЧИ И КОНСТРЕЙНТЫ
+)
+
+COMMENT ON  TABLE   market_value    IS  'рыночная стоимость';
+COMMENT ON  COLUMN  code            IS  'код инструмента';
+COMMENT ON  COLUMN  cost            IS  'текущая цена инструмента';
+COMMENT ON  COLUMN  open_cost       IS  'цена открытия';
+COMMENT ON  COLUMN  close_cost      IS  'цена закрытия';
+COMMENT ON  COLUMN  min_cost        IS  'минимальная цена'; /// за день?
+COMMENT ON  COLUMN  max_cost        IS  'максимальная цена';
+COMMENT ON  COLUMN  buy_cost        IS  'цена покупки';
+COMMENT ON  COLUMN  sell_cost       IS  'цена продажи';
+COMMENT ON  COLUMN  trading_volume  IS  'объем торгов';
+
+COMMENT ON  COLUMN  create_at       IS  'дата и время создания записи';
+COMMENT ON  COLUMN  update_at       IS  'дата и время обновления записи';
+COMMENT ON  COLUMN  delete_at       IS  'дата и время удаления записи';
+COMMENT ON  COLUMN  is_deleted      IS  'удалена ли запись';

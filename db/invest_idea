@@ -1,0 +1,37 @@
+CREATE TABLE invest_idea(
+idea_uuid               UUID                not null,
+name                    VARCHAR(20)         not null,
+description             VARCHAR(3000)       not null,
+start_date              TIMESTAMP           not null default now(),
+end_date                TIMESTAMP           not null,
+initial_price           INT                 not null,
+target                  INT                 not null,
+forecast                INT                 not null,
+code                    VARCHAR(10)         not null,
+status                  VARCHAR(10)         not null, //вынести в хедеры
+
+
+create_at       TIMESTAMP not null default now(),
+update_at       TIMESTAMP not null default now(),
+delete_at       TIMESTAMP default null,
+is_deleted      BOOLEAN   not null default false,
+
+constraint
+)
+
+COMMENT ON  TABLE   invest_idea     IS  'список инвестиционных идей';
+COMMENT ON  COLUMN  idea_uuid       IS  'UUID записи'
+COMMENT ON  COLUMN  name            IS  'краткое имя идеи';
+COMMENT ON  COLUMN  description     IS  'Подробное описание идеи';
+COMMENT ON  COLUMN  start_data      IS  'Дата старта идеи';
+COMMENT ON  COLUMN  end_data        IS  'Дата завершения идеи';
+COMMENT ON  COLUMN  initial_price   IS  'Покупка от уровня';
+COMMENT ON  COLUMN  target          IS  'Цель';
+COMMENT ON  COLUMN  forecast        IS  'прогонзируемая доходность';
+COMMENT ON  COLUMN  code            IS  'код инструмента';
+COMMENT ON  COLUMN  is_active       IS  'активна ли идея';
+
+COMMENT ON  COLUMN  create_at       IS  'дата и время создания записи';
+COMMENT ON  COLUMN  update_at       IS  'дата и время обновления записи';
+COMMENT ON  COLUMN  delete_at       IS  'дата и время удаления записи';
+COMMENT ON  COLUMN  is_deleted      IS  'удалена ли запись';

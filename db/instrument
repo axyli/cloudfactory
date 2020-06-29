@@ -1,0 +1,30 @@
+CREATE TABLE instrument(
+code                    VARCHAR(10)         not null,
+name                    VARCHAR(20)         not null,
+description             VARCHAR(3000)       not null,
+type                    VARCHAR(20)         not null,
+index                   VARCHAR(20)         not null,
+currency                VARCHAR(3)          not null,
+
+
+create_at       TIMESTAMP not null default now(),
+update_at       TIMESTAMP not null default now(),
+delete_at       TIMESTAMP default null,
+is_deleted      BOOLEAN   not null default false,
+
+constraint ПРОПИСАТЬ КЛЮЧИ И КОНСТРЕЙНТЫ
+)
+
+COMMENT ON  TABLE   instrument      IS  'список инструментов';
+COMMENT ON  COLUMN  code            IS  'код инструмента'
+COMMENT ON  COLUMN  name            IS  'краткое имя инструмента';
+COMMENT ON  COLUMN  description     IS  'Подробное описание инструмента';
+COMMENT ON  COLUMN  type            IS  'тип ценной инструмента';
+COMMENT ON  COLUMN  index           IS  'Индекс инструмента'; /// тут связь 1 к многим, или еще записи или куча индексов, как будем поиск делать
+COMMENT ON  COLUMN  currency        IS  'валюта инструмента';
+
+
+COMMENT ON  COLUMN  create_at       IS  'дата и время создания записи';
+COMMENT ON  COLUMN  update_at       IS  'дата и время обновления записи';
+COMMENT ON  COLUMN  delete_at       IS  'дата и время удаления записи';
+COMMENT ON  COLUMN  is_deleted      IS  'удалена ли запись';
