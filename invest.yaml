@@ -1,0 +1,100 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  description: "Сервис работы c инвестиционными идеями"
+  title: docflow.docs
+servers:
+  -   url: '{server}'
+
+paths:
+  /v1/ideas:
+    get:
+      summary: 'Запрос на предоставление инвестиционных идей(топ)'
+      operationId: getIdeas
+      responses:
+        '200':
+          description: "список идей"
+          content:
+            application/josn:
+              schema:
+                $ref: '#/components/schemas/IdeasAll'
+
+  /v1/ideas/{uuid}:
+    get:
+      summary: 'Запрос на предоставление информации по конкретной идее'
+      operationId: getIdeaContent
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          description: uuid идеи
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ideas'
+
+
+
+
+components:
+  schemas:
+
+    IdeasAll:
+      description: список идей
+      type: array
+      items:
+        $ref: '#/components/schemas/Ideas'
+
+
+    Ideas:
+      description: Описание идеи
+      type: object
+      properties:
+        uuid:
+          description: uuid идеи
+          type: string
+          format: uuid
+        name:
+          description: краткое имя идеи
+          type: string
+          example: 'MTS-ao'
+        description:
+          description: подробное описание идеи
+          type: string
+          example: 'Очень много текста'
+        start_date:
+          description: дата старта идеи
+          type: string
+          format: date-time
+        end_date:
+          description: дата окончания идеи
+          type: string
+          format: date-time
+        initial_prise:
+          description: начальная цена(наверно это лучше перенести таки в инструменты)
+          type: number
+          format: float
+          example: '345.15'
+        target:
+          description: цель
+          type: number
+          format: float
+          example: '524.42'
+        forecast:
+          description: Прогнозируемая доходность
+          type: number
+          format: float
+          example: '14.58'
+        code:
+          description: код инструмента
+          type: string
+          example: 'MTSS'
+        status:
+          description: статус идеи
+          type: string
+          example: 'активна'
